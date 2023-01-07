@@ -1,0 +1,9 @@
+class Solution:
+    def maximumWealth(self, accounts):
+        ans, curr= 0, 0
+        for i in accounts:
+            for j in i:
+                curr+=j
+            ans=max(ans,curr)
+            curr=0
+        return ans
