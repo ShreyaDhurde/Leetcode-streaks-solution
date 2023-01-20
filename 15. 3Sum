@@ -1,0 +1,20 @@
+class Solution(object):
+    # O(N^2) but this deletes unnecessary process
+    def threeSum(self, nums):
+        ret = []
+        nums.sort() #O(Nlog(N) ~ O(N))
+        for idx in range(len(nums) - 2): #O(N)
+            if 0 < nums[idx]: break
+            if 0 < idx and nums[idx] == nums[idx - 1]: continue
+            max_idx = len(nums) - 1
+            for f_idx in range(idx + 1, max_idx):
+                if max_idx <= f_idx: break
+                if idx + 1 < f_idx and nums[f_idx] == nums[f_idx - 1] : continue
+                diff = - nums[f_idx] - nums[idx]
+                while f_idx < max_idx:
+                    if nums[max_idx] == diff:
+                        ret.append([nums[idx], nums[f_idx], nums[max_idx]])
+                        break
+                    if nums[max_idx] < diff: break
+                    max_idx -= 1
+        return ret
