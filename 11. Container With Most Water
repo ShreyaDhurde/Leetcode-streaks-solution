@@ -1,0 +1,20 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        p1 = 0
+        p2 = len(height) - 1
+        res = 0
+        while p1 < p2:
+            if height[p1] <= height[p2]:
+                min_point = p1
+                min_height = height[p1]
+            else:
+                min_point = p2
+                min_height = height[p2]
+                
+            amount = (p2 - p1) * min_height
+            if amount > res: 
+                res = amount 
+                
+            p1 += (p1 == min_point) * 1
+            p2 -= (p2 == min_point) * 1
+        return res
