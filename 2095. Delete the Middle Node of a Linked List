@@ -1,0 +1,14 @@
+from math import ceil
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        mapped = []
+        n = 0
+        while head:
+            mapped.append(head)
+            n += 1
+            head = head.next
+        middle = n // 2 if n % 2 else ceil(n/2)
+        if n - 1:
+            mapped[middle-1].next = mapped[middle].next
+            return mapped[0]
+        else :return None
