@@ -1,0 +1,15 @@
+from functools import cache
+
+class Solution:
+    def knightProbability(self, n: int, k: int, row: int, column: int) -> float:
+        moves = ((1, 2), (1, -2), (-1, 2), (-1, -2), (2, 1), (2, -1), (-2, 1), (-2, -1))
+
+        @cache
+        def helper(k, i, j):
+            if i < 0 or i >= n or j < 0 or j >= n:
+                return 0.0
+            if k == 0:
+                return 1.0
+            return sum(helper(k - 1, i + _i, j + _j) for _i, _j in moves) / 8
+        
+        return helper(k, row, column)
