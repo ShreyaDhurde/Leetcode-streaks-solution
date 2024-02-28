@@ -1,0 +1,17 @@
+class Solution(object):
+    def findBottomLeftValue(self, root):
+       
+        q = deque([root])
+        lm_v= None 
+
+        while q:
+            node =q.popleft()
+
+            lm_v = node.val
+
+            if node.right:
+                q.append(node.right)
+
+            if node.left:
+                q.append(node.left)
+        return lm_v
