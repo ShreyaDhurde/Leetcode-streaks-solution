@@ -1,0 +1,15 @@
+class Solution:
+    def maxSubarrayLength(self, nums: List[int], k: int) -> int:
+        map = {}
+        start = 0
+        max_len = 0
+        for end, num in enumerate(nums):
+            map[num] = map.get(num, 0) + 1
+            while len(map) > k:
+                left_num = nums[start]
+                map[left_num] -= 1
+                if map[left_num] == 0:
+                    del map[left_num]
+                start += 1
+            max_len = max(max_len, end - start + 1)
+        return max_len
